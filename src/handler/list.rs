@@ -69,5 +69,9 @@ fn print_table_stdout(version_map: &VersionMap) {
         }
         table.add_row(Row::new(row));
     }
+    println!("\n Nodejs version list: \n");
+
     table.printstd();
+
+    println!("\n This is a partial list. For a complete list, visit https://nodejs.org/en/download/releases");
 }
