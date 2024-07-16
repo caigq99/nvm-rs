@@ -1,6 +1,7 @@
 mod cli;
 mod commands;
 mod handler;
+mod utils;
 
 use clap::Parser;
 use cli::Cli;
@@ -15,8 +16,8 @@ fn main() {
         Some(Commands::Current) => {
             handler::handle_current();
         }
-        Some(Commands::Install) => {
-            handler::handle_install();
+        Some(Commands::Install { version }) => {
+            handler::handle_install(version);
         }
         Some(Commands::Uninstall) => {
             handler::handle_uninstall();
@@ -24,10 +25,7 @@ fn main() {
         Some(Commands::List) => {
             handler::handle_list();
         }
-        Some(Commands::Proxy { url }) => {
-            handler::handle_proxy();
-        }
-        Some(Commands::Use { version }) => {
+        Some(Commands::Use { version: _ }) => {
             handler::handle_use_version();
         }
     }
