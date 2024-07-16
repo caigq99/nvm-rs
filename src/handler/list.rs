@@ -1,3 +1,4 @@
+use crate::utils::NODE_VERSION_JSON_URL;
 use prettytable::{Cell, Row, Table};
 use reqwest::Response;
 use std::collections::BTreeMap;
@@ -10,9 +11,8 @@ pub fn handle_list() {
 
 #[tokio::main]
 async fn get_available_versions_list() -> Result<(), reqwest::Error> {
-    let url = "https://nodejs.org/dist/index.json";
     let mut version_map: VersionMap = BTreeMap::new();
-    let response: Response = reqwest::get(url).await?;
+    let response: Response = reqwest::get(NODE_VERSION_JSON_URL).await?;
     if response.status().is_success() {
         let versions: serde_json::Value = response.json().await?;
         if let Some(versions_array) = versions.as_array() {
@@ -34,7 +34,6 @@ async fn get_available_versions_list() -> Result<(), reqwest::Error> {
                 }
             }
         }
-
         print_table_stdout(&version_map);
     } else {
         eprintln!("Failed to fetch versions: {}", response.status());

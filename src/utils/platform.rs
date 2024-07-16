@@ -24,9 +24,27 @@ impl SystemInfo {
 }
 
 pub fn is_windows() -> bool {
-    System::name().unwrap() == "Windows"
+    System::name().unwrap().contains("Windows")
 }
 
 pub fn is_supported_system() -> bool {
     sysinfo::IS_SUPPORTED_SYSTEM
+}
+
+pub fn get_system_name() -> &'static str {
+    match System::name().unwrap().as_str() {
+        "Windows" => "win",
+        "Linux" => "linux",
+        "Darwin" => "darwin",
+        _ => "unknown",
+    }
+}
+
+pub fn get_cpu_arch() -> &'static str {
+    match System::cpu_arch().unwrap().as_str() {
+        "x86_64" => "x64",
+        "x86" => "x86",
+        "arm64" => "arm64",
+        _ => "unknown",
+    }
 }
