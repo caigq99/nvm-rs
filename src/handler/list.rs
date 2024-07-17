@@ -1,4 +1,4 @@
-use crate::utils::NODE_VERSION_JSON_URL;
+use crate::utils::download::NODE_VERSION_JSON_URL;
 use prettytable::{Cell, Row, Table};
 use reqwest::Response;
 use std::collections::BTreeMap;

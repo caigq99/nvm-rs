@@ -1,4 +1,4 @@
-use crate::utils::{get_download_url, get_suffix};
+use crate::utils::download::{get_download_url, get_suffix};
 use anyhow::Result;
 use indicatif::{ProgressBar, ProgressState, ProgressStyle};
 use std::{

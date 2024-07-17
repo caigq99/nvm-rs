@@ -1,4 +1,4 @@
-use crate::utils::{is_supported_system, SystemInfo};
+use crate::utils::platform::{is_supported_system, SystemInfo};
 
 pub fn handle_arch() {
     if is_supported_system() {
