@@ -1,7 +1,7 @@
 use anyhow::Result;
 use dirs;
 use std::fs;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 pub fn config_path() -> String {
     dirs::home_dir()
@@ -11,6 +11,10 @@ pub fn config_path() -> String {
         .to_str()
         .unwrap()
         .to_string()
+}
+
+pub fn get_default_node_path() -> PathBuf {
+    dirs::home_dir().unwrap().join(PathBuf::from(".nodefile"))
 }
 
 pub fn config_file_exists(file_path: String) -> bool {

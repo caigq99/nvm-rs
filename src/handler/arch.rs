@@ -1,7 +1,7 @@
-use crate::utils::platform::{is_supported_system, SystemInfo};
+use crate::utils::system::SystemInfo;
 
 pub fn handle_arch() {
-    if is_supported_system() {
+    if SystemInfo::is_supported_system() {
         let sys_info = SystemInfo::new();
         println!(
             "System Info: {} {}",

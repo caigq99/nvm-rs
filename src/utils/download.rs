@@ -1,4 +1,4 @@
-use crate::utils::platform::{get_cpu_arch, get_system_name, is_windows};
+use crate::utils::system::SystemInfo;
 
 pub const NODE_VERSION_JSON_URL: &str = "https://nodejs.org/dist/index.json";
 
@@ -9,7 +9,7 @@ const NODE_DOWNLOAD_SUFFIX: &str = ".tar.gz";
 const NODE_DOWNLOAD_SUFFIX_WIN: &str = ".zip";
 
 pub fn get_suffix() -> &'static str {
-    match is_windows() {
+    match SystemInfo::is_windows() {
         true => NODE_DOWNLOAD_SUFFIX_WIN,
         false => NODE_DOWNLOAD_SUFFIX,
     }
@@ -22,8 +22,8 @@ pub fn get_download_url(version: &str) -> String {
         version,
         NODE_DOWNLOAD_PREFIX,
         version,
-        get_system_name(),
-        get_cpu_arch(),
+        SystemInfo::get_system_name(),
+        SystemInfo::get_cpu_arch(),
         get_suffix()
     )
 }
