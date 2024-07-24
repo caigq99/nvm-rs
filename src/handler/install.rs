@@ -103,9 +103,6 @@ async fn unzip_file(filename: &str) -> Result<()> {
         .progress_chars("#>-"));
     let mut extract_num = 0;
     for i in 0..archive.len() {
-        if i == 0 {
-            continue;
-        }
         let mut file = archive.by_index(i).unwrap();
         let outpath = match file.enclosed_name() {
             Some(path) => PathBuf::from(&node_dir).join(&path),
