@@ -6,7 +6,9 @@ mod utils;
 use clap::Parser;
 use cli::Cli;
 use commands::Commands;
-fn main() {
+
+#[tokio::main]
+async fn main() {
     let cli_config = Cli::parse();
     match cli_config.command {
         None => {

@@ -6,7 +6,6 @@ use std::{fmt::Write, fs, io, path::PathBuf};
 use tokio::{fs::File, io::AsyncWriteExt};
 use zip::ZipArchive;
 
-#[tokio::main]
 pub async fn handle_install(version: String) -> Result<()> {
     let mut version = version.clone();
     if !version.starts_with("v") {
@@ -30,7 +29,6 @@ pub async fn handle_install(version: String) -> Result<()> {
             let download_url = get_download_url(&version);
             println!("download url: {}", download_url);
             download_file(&download_url).await?;
-            // #[cfg(windows)]
             unzip_file(&format!("{}{}", &version, get_suffix())).await?;
 
             let old_name = node_dir
@@ -46,8 +44,6 @@ pub async fn handle_install(version: String) -> Result<()> {
                 .to_string();
             let new_name = node_dir.join(&version).to_str().unwrap().to_string();
             rename_directory(&old_name, &new_name)?;
-            // #[cfg(not(windows))]
-            // untar_file();
             Ok(())
         }
     }

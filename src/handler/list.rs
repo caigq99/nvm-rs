@@ -9,7 +9,6 @@ pub fn handle_list() {
     let _ = get_available_versions_list();
 }
 
-#[tokio::main]
 async fn get_available_versions_list() -> Result<(), reqwest::Error> {
     let mut version_map: VersionMap = BTreeMap::new();
     let response: Response = reqwest::get(NODE_VERSION_JSON_URL).await?;
